@@ -1,0 +1,48 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <div class="navbar-brand">
+        <%= link_to t("home"), root_path%>
+      </div>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#">About</a>
+        </li>
+        <li>
+          <a href="#">Contact</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to t("layout.header.all_user"), "#" %>
+          </li>
+          <li class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+              <%= current_user.email %> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to t("layout.header.logout"), destroy_user_session_path,
+                method: :delete %>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to t("layout.header.edit_profie"), edit_user_path(current_user) %>
+              </li>
+              <li class="divider"></li>
+              <li><%= link_to t("layout.header.profie"), "#" %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to t("login"), new_user_session_path %>
+          </li>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
+</nav>

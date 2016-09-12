@@ -1,0 +1,26 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  padding-top: 30px;
+}
+
+.center {
+  text-align: center;
+}
+
+.footer {
+  padding: 50px, 0px;
+  color: white;
+  text-align: center;
+  padding: 50px 0;
+}
+.scroll {
+  height:100px;
+  width: 100%;
+  overflow: auto;
+  color: black;
+  font-family: sans-serif;
+  padding:10px;
+  font-size: 15px;
+}
