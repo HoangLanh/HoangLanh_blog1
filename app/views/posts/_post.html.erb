@@ -1,0 +1,49 @@
+<div class="row blog-post">
+  <% if @posts.any?%>
+    <% @posts.each do |post| %>
+      <div class="col-lg-12">
+        <div class="thumbnail">
+          <% if post.picture.present? %>
+            <%= link_to image_tag(post.picture.url, size: Settings.member.size), post %>
+          <% end %>
+	    <div class="caption">
+	      <div class="item-info">
+		<a class="name-title break-word"><%= link_to post.title, post %></a>
+	        <% if post.user.avatar.present? %>
+		  <%= link_to image_tag(post.user.avatar.url, size: Settings.member.size1), post.user %>
+	        <% else %>
+		  <%= link_to image_tag(Settings.member.url,
+		    size: Settings.member.size1), post.user %>
+	        <% end %>
+		<a><%= link_to post.user.name, post.user %></a>
+	        <div class="mini-date">
+                  <span>posted on</span>
+                  <span class="date">
+                    <%= post.created_at %>
+                  </span>
+	        </div>
+              <p class="detail break-word">
+	        <%= truncate(post.content, length:40) %>
+	          </p>
+                    <div class="nav navbar-nav navbar-right">
+                      <% if can? :update_destroy, Post %>
+                        <% if user_signed_in? %>
+                          <% if current_user.is_user? post.user %>
+                            <%= link_to edit_post_path(post) do %>
+                              <span class="glyphicon glyphicon-pencil admin-action"></span>
+                            <% end %>
+                            <%= link_to post_path(post), method: :delete,
+                              data: {confirm: t("Are_your_sure")} do %>
+                              <span class="glyphicon glyphicon-trash admin-action"></span>
+                            <% end %>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+              </div>
+		</div>
+		</div>
+	    </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

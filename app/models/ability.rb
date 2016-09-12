@@ -6,6 +6,9 @@ class Ability
     alias_action :update, :destroy, to: :update_destroy
       if user.member?
         can :update, User, id: user.id
+        can :create, Post
+        can :update_destroy, Post
+        can :edit, Post
         can :read, :all
       else
         can :read, :all
