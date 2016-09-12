@@ -31,6 +31,13 @@ gem "jbuilder", "~> 2.5"
 # gem "capistrano-rails", group: :development
 gem "byebug"
 gem "config"
+gem "devise"
+gem "bootstrap-sass"
+gem "cancancan"
+gem "carrierwave"
+gem "ransack"
+gem "kaminari"
+gem "mini_magick"
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", platform: :mri
