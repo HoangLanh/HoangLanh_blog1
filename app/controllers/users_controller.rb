@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   before_action :load_user
   def index
+    @search = User.search params[:q]
+    @users = @search.result.order(created_at: :desc).page params[:page]
   end
 
   def edit

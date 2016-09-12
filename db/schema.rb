@@ -12,13 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20160912031740) do
 
-  create_table "categories", force: :cascade do |t|
-    t.string   "content"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.string   "content"
     t.integer  "user_id"
@@ -30,8 +23,8 @@ ActiveRecord::Schema.define(version: 20160912031740) do
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.string   "content"
-    t.integer  "comment_id"
     t.string   "picture"
+    t.string   "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160912031740) do
     t.string   "name"
     t.string   "avatar"
     t.integer  "role"
+    t.string   "introduce"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
