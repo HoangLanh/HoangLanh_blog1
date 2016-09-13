@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-	belongs_to :comments
-	enum role: [:guest, :member]
+  has_many :comments
+  has_many :posts
+  enum role: [:guest, :member]
   mount_uploader :avatar, AvatarUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
