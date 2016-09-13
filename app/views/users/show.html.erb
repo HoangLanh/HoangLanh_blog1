@@ -1,2 +1,23 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="col-md-2">
+  <div class="thumbnail">
+    <% if @user.avatar.present? %>
+      <%= link_to image_tag(@user.avatar.url, size: Settings.member.size), @user %>
+    <% else %>
+      <%= link_to image_tag(Settings.member.url, size: Settings.member.size), users_path %>
+    <% end %>
+  </div>
+</div>
+<div class="col-md-6">
+  <%= @user.introduce%>
+  <%= @user.name%>
+</div>
+<div class="col-md-1">
+  <%= render "follow_form" if user_signed_in? %>
+</div>
+<div class="col-md-3">
+  <section class="stats">
+    <%= render "shared/stats" %>
+  </section>
+</div>
+<%= render "posts/post"%>
+

@@ -10,6 +10,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find_by id: params[:id]
+    @posts = @user.posts.order(created_at: :desc).page params[:page]
+    unless @post
+    flash[:danger] = "No post"
+    end
   end
 
   def update

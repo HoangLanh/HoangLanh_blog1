@@ -24,12 +24,14 @@ body {
   padding:10px;
   font-size: 15px;
 }
-.thumbnail .box-top {
 
-}
-.thumbnail a > img
+.thumbnail
+{
+a {
+img
 {margin-left: 5px;}
-
+}
+}
 .search-padding {
   padding-bottom: 30px;
   float: right;
