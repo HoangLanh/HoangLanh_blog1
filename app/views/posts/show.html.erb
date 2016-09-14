@@ -6,7 +6,7 @@
 	  <div class="item-info">
 	    <a class="name-title break-word"><%= link_to @post.title, @post %></a>
 	      <% if @post.user.avatar.present? %>
-		<%= link_to image_tag(@post.user.avatar.url, size: Settings.member.size),
+		<%= link_to image_tag(@post.user.avatar.url, size: Settings.member.size1),
 		  @post.user %>
 	      <% else %>
 	        <%= link_to image_tag(Settings.member.url,

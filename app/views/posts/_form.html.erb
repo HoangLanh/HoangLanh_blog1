@@ -1,0 +1,14 @@
+<%= form_for [@user, @post], html: {multipart: true} do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, class: "form-control" %>
+
+  <%= f.label :content %>
+  <%= f.text_field :content, rows: 2, class: "form-control" %>
+  <span class="picture">
+    <%= f.label :picture %>
+    <%= f.file_field :picture, accept: "image/jpeg,image/gif,image/png" %>
+  </span>
+  <br>
+  <%= f.submit yield: :button_text, class: "btn btn-primary" %>
+  <br/>
+<% end %>
