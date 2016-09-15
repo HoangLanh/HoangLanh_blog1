@@ -1,0 +1,6 @@
+<% provide :button_text, "Create_comment" %>
+<% unless @exist_comments.nil? %>
+  <%= render "comments/form_for_exist_comment" %>
+<% else %>
+  <%= render "comments/form" %>
+<% end %>
