@@ -24,6 +24,25 @@
 	    </p>
   	  </div>
   	</div>
+	  <% if user_signed_in? %>
+	    <% if can? :create, Comment %>
+	      <h4><%= t "Create_comment" %></h4>
+	      <% unless @current_comment %>     
+	        <%= form_for [@post, @comment] do |f| %>
+	          <%= f.hidden_field :user_id, value: current_user.id %>
+	          <br>
+	          <%= f.text_area :content, class: "form-control" %>
+	          <br/>
+	          <%= f.submit "create", class: "btn btn-primary" %>
+	        <% end %>
+	      <% end %>
+	    <% end %>
+	  <% end %>
+	  <% if can? :read, Comment %>
+	    <div id="show-comment">
+	      <%= render @comments %>
+	    </div>
+	  <% end %>
       </div>
    </div>
 </div>

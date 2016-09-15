@@ -9,6 +9,8 @@ class Ability
         can :create, Post
         can :update_destroy, Post
         can :edit, Post
+        can [:read, :create], Comment
+        can :update_destroy, Comment, user_id: user.id
         can :read, :all
       else
         can :read, :all

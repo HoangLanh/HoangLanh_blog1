@@ -1,0 +1,29 @@
+<div id="delete-<%=comment.id%>-comment">
+  <div class="comment-card">
+    <%= image_tag current_user.avatar.url,
+      size: "100x100" %>
+    <span>
+      <%= current_user.name %>
+    </span>
+    <span class="time-ago-in-words pull-right">
+      <%= time_ago_in_words(comment.created_at) %>
+      <%= t("views.comments.ago") %>
+    </span>
+    <div>
+      <% if can? :update_destroy, Comment %>
+        <% if user_signed_in? %>
+          <%if comment.user_id == current_user.id %>
+            <%= link_to t("views.comments.edit"),
+              edit_post_comment_path(comment.post, comment), remote: true %>
+            <%= link_to t("views.comments.delete"),
+              post_comment_path(comment.post, comment),
+              method: :delete,data: {confirm: "Are_your_sure"}, remote: true %>
+          <% end %>
+        <%end%>
+      <% end %>
+    </div>
+    <div id="edit-<%=comment.id%>-comment">
+      <%= render partial: "comments/show_comment", locals: {comment: comment} %>
+    </div>
+  </div>
+</div>
