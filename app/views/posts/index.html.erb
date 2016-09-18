@@ -1,16 +1,21 @@
-<div class="panel search-padding">
-  <table class="table-padding">
-    <%= search_form_for @search do |f| %>
-      <form class="form-inline">
-	<td><%= f.text_field :title_cont, class: "form-control",
-	  placeholder: "title post" %>
-	</td>
-	<td>
-	  <%= f.submit "search", class: "btn btn-info" %>
-	</td>
-      </form>  
-    <% end %>
-  </table>
-</div>
-<%= paginate @posts %>
+<div class="col-md-9">
+	<div class="panel search-padding">
+	  <table class="table-padding">
+	    <%= search_form_for @search do |f| %>
+	      <form class="form-inline">
+					<td><%= f.text_field :title_cont, class: "form-control",
+					  placeholder: "title post" %>
+					</td>
+					<td>
+					  <%= f.submit "search", class: "btn btn-info" %>
+					</td>
+	      </form>  
+	    <% end %>
+	  </table>
+	</div>
 <%= render "post"%>
+<%= paginate @posts %>
+</div>
+<div class="col-md-3">
+	<%= render "layouts/right"%>
+</div>

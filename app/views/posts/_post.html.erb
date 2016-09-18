@@ -9,6 +9,7 @@
 	    <div class="caption">
 	      <div class="item-info">
 		<a class="name-title break-word"><%= link_to post.title, post %></a>
+    <br/>
 	        <% if post.user.avatar.present? %>
 		  <%= link_to image_tag(post.user.avatar.url, size: Settings.member.size1), post.user %>
 	        <% else %>
@@ -23,23 +24,8 @@
                   </span>
 	        </div>
               <p class="detail break-word">
-	        <%= truncate(post.content, length:40) %>
+	        <%= truncate(post.content, length:100) %>
 	          </p>
-                    <div class="nav navbar-nav navbar-right">
-                      <% if can? :update_destroy, Post %>
-                        <% if user_signed_in? %>
-                          <% if current_user.is_user? post.user %>
-                            <%= link_to edit_post_path(post) do %>
-                              <span class="glyphicon glyphicon-pencil admin-action"></span>
-                            <% end %>
-                            <%= link_to post_path(post), method: :delete,
-                              data: {confirm: t("Are_your_sure")} do %>
-                              <span class="glyphicon glyphicon-trash admin-action"></span>
-                            <% end %>
-                          <% end %>
-                        <% end %>
-                      <% end %>
-              </div>
 		</div>
 		</div>
 	    </div>

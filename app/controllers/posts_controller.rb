@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
-  before_action :load_post
 
   def index
-    @search = Post.search params[:q]
+    @search = Post.ransack(search_params)
     @posts = @search.result.order(created_at: :desc).page params[:page]
+    @posts_followed = Post.of_users User.first
   end
 
   def new
@@ -47,8 +47,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by id: params[:id]
-    @comment = Comment.new
-    @comments = @post.comments.order created_at: :desc
+    @comment = @post.comments.build
+    if user_signed_in?
+      @current_comment = @post.comments.find_by user_id: current_user.id
+    end
+    @comments = @post.comments.order(created_at: :desc).page params[:page]    
     unless @post
       flash[:danger] = "No post"
       redirect_to posts_url
@@ -56,6 +59,11 @@ class PostsController < ApplicationController
   end
 
   private
+  
+  def search_params
+    params[:q].to_hash if params[:q]
+  end
+
   def post_params
     params.require(:post).permit :title, :content, :user_id, :picture
   end
