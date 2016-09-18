@@ -8,21 +8,24 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.build comment_params
+    respond_to do |format|
     if @comment.save
       flash[:success] = t "create_success",
         objects:"Comment"
     else
-      flash[:danger] = t "controllers.flash.common.create_error",
+      flash[:danger] = t "create_error",
         objects: "Comment"
     end
-    redirect_to post_path(@post)
+      format.html {redirect_to post_path(@post)}
+      format.js
+    end
   end
 
   def edit
   end
 
   def update
-
+    respond_to do |format|
     if @comment.update_attributes comment_params
       flash[:success] = t "update_success",
         objects: "Comment"
@@ -30,10 +33,13 @@ class CommentsController < ApplicationController
       flash[:danger] = t "controllers.flash.common.update_error",
         objects: t("Comment")
     end
-    redirect_to post_path(@post)
+      format.html {redirect_to post_path(@post)}
+      format.js
+  end
   end
 
   def destroy
+    respond_to do |format|
       if @comment.destroy
         flash[:success] = t "destroy_success",
           objects: t("Comment")
@@ -41,7 +47,9 @@ class CommentsController < ApplicationController
         flash[:danger] = t "destroy_error",
           objects: t("Comment")
       end
-    redirect_to post_path(@post)
+      format.html {redirect_to post_path(@post)}
+      format.js
+  end
   end
 
   

@@ -1,12 +1,10 @@
-<div class="col-md-2">
-<div class="thumbnail">
+<div class="col-md-3">
 	<% if @user.avatar.present? %>
 	  <%= link_to image_tag(@user.avatar.url, size: Settings.member.size), @user %>
 	<% else %>
 	  <%= link_to image_tag(Settings.member.url,
 	    size: Settings.member.size), users_path %>
 	<% end %>
-</div>
 </div>
 <div class="col-md-6">
 <%= @user.introduce%>
@@ -15,17 +13,62 @@
 <div class="col-md-1">
 <%= render "follow_form" if user_signed_in? %>
 </div>
-<div class="col-md-3">
+<div class="col-md-2">
   <section class="stats">
     <%= render "shared/stats" %>
   </section>
 </div>
-<% if current_user.is_user? @user %> 
-<div class="nav navbar-nav navbar-right">
-  <%= link_to t("views.admin.create_new_post"),
-  new_post_path, class: "btn btn-info" %>
-</div>
-<br/>
-<br/>
+<% if user_signed_in? %>
+	<% if current_user.is_user? @user %> 
+	<div class="nav navbar-nav navbar-right">
+	  <%= link_to t("views.admin.create_new_post"),
+	  new_post_path, class: "btn btn-info" %>
+	</div>
+	<br/>
+	<br/>
+	<% end %>
 <% end %>
-<%= render "posts/post"%>
+	<br/>
+	</div>
+<table class="table table-hover">
+  <tr class="info">
+    <th><%= t "stt" %></th>
+    <th><%= t "title" %></th>
+    <th><%= t "content" %></th>
+    <th><%= t "picture" %></th>
+    <th><%= t "poster" %></th>
+    <th> t "action"</th>
+  </tr>
+  <%= paginate @posts %>
+  <% @posts.each_with_index do |post, index| %>
+    <tr>
+      <td> <%= index + 1 %> </td>
+      <td><%= post.title %></td>
+      <td><%= post.title %></td>
+      <td>
+        <% if post.picture.present? %>
+          <%= link_to image_tag(post.picture.url, size: Settings.member.size2), post %>
+        <% end %>
+      </td>
+      <td><%= post.user.name %></td>
+      <td>
+        <span>
+          <% if can? :update_destroy, Post %>
+            <% if user_signed_in? %>
+              <% if current_user.is_user? post.user %>
+                <%= link_to edit_post_path(post) do %>
+                  <span class="glyphicon glyphicon-pencil admin-action"></span>
+                <% end %>
+                <%= link_to post_path(post), method: :delete,
+                  data: {confirm: t("Are_your_sure")} do %>
+                  <span class="glyphicon glyphicon-trash admin-action"></span>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </span>
+      </td>
+    </tr>
+  <% end %>
+</table>
+

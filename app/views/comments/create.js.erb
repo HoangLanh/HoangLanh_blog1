@@ -1,0 +1,2 @@
+$('#show-comment').html('<%= j render @post.comments.order("created_at DESC").limit(5) %>');
+$('#new-comment').html('');

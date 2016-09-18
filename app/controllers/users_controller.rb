@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
-  before_action :load_user
   def index
-    @search = User.search params[:q]
+    @search = User.ransack(search_params)
     @users = @search.result.order(created_at: :desc).page params[:page]
+    @posts_followed = Post.of_users User.first
   end
 
   def edit
@@ -28,6 +28,11 @@ class UsersController < ApplicationController
   end
 
   private
+
+def search_params
+    params[:q].to_hash if params[:q]
+  end
+
   def user_params
     params.require(:user).permit :name, :email, :password, :password_confirmation, :avatar
   end

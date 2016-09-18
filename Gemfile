@@ -35,7 +35,7 @@ gem "devise"
 gem "bootstrap-sass"
 gem "cancancan"
 gem "carrierwave"
-gem "ransack"
+gem 'ransack', github: 'activerecord-hackery/ransack'
 gem "kaminari"
 gem "mini_magick"
 gem "faker"
