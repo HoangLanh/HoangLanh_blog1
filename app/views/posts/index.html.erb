@@ -16,6 +16,8 @@
 <%= render "post"%>
 <%= paginate @posts %>
 </div>
-<div class="col-md-3">
-	<%= render "layouts/right"%>
-</div>
+<% if user_signed_in? %>
+	<div class="col-md-3">
+		<%= render "layouts/right"%>
+	</div>
+<% end %>

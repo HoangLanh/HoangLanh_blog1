@@ -1,0 +1,15 @@
+role:
+  member: 1
+avatar:
+  url: "avatar.jpg"
+size: "200x160"
+url: "/assets/a4.jpg"
+
+post:
+  url: "anh1.jpg"
+  size: "200x160"
+member:
+  size: "160x160"
+  size1: "30x30"
+  url: "avatar.jpg"
+  size2: "60x60"

@@ -33,7 +33,7 @@
                   <%= user.name %>
                 </a>
                 <p class="detail break-word">
-                  <%= user.introduce %>
+                  <%= truncate(user.introduce, length:200) %>
                 </p>
               </div>
             </div>

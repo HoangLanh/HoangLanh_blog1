@@ -4,7 +4,10 @@
       <div class="col-lg-12">
         <div class="thumbnail">
           <% if post.picture.present? %>
-            <%= link_to image_tag(post.picture.url, size: Settings.member.size), post %>
+            <%= link_to image_tag(post.picture.url, size: Settings.size), post %>
+          <% else %>
+            <%= link_to image_tag(Settings.post.url,
+              size: Settings.post.size), post %>
           <% end %>
 	    <div class="caption">
 	      <div class="item-info">

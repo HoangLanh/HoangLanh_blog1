@@ -10,7 +10,7 @@ body {
 }
 .thumbnail .caption {
     float: right;
-    width: 69%;
+    width: 75%;
 }
 .footer {
   padding: 50px, 0px;
@@ -27,7 +27,8 @@ body {
   padding:10px;
   font-size: 15px;
 }
-.thumbnail {
+
+.col-lg-12 .thumbnail {
 height: 200px
 }
 .thumbnail > a > img

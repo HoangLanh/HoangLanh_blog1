@@ -34,7 +34,7 @@ def search_params
   end
 
   def user_params
-    params.require(:user).permit :name, :email, :password, :password_confirmation, :avatar
+    params.require(:user).permit :name, :email, :password, :password_confirmation, :avatar, :introduce
   end
 	def load_user
 	  @user = User.find_by id: params[:id]
